@@ -18,8 +18,8 @@ class _AxonSwitchState extends State<AxonSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    const double height = 23;
-    const double width = 45;
+    final double height = AxonTheme.of(context).isMobile ? 30 : 23;
+    final double width = AxonTheme.of(context).isMobile ? 60 : 45;
     final double padding = widget.switched
         ? _pressed
             ? 4

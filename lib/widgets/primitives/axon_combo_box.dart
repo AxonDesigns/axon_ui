@@ -106,7 +106,9 @@ class _AxonComboBoxState<T extends dynamic> extends State<AxonComboBox<T>> {
           }
         },
         focusNode: focusNode,
-        padding: widget.padding,
+        padding: AxonTheme.of(context).isMobile
+            ? EdgeInsets.symmetric(horizontal: widget.padding.horizontal, vertical: widget.padding.vertical)
+            : widget.padding,
         disabled: false,
         disabledBackgroundColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.0),
         inactiveBackgroundColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.0),
@@ -158,7 +160,7 @@ class _AxonComboBoxState<T extends dynamic> extends State<AxonComboBox<T>> {
                   : button,
             ),
             Positioned(
-              right: widget.padding.horizontal / 2,
+              right: AxonTheme.of(context).isMobile ? widget.padding.horizontal : widget.padding.horizontal / 2,
               child: IgnorePointer(
                 child: AnimatedRotation(
                   duration: const Duration(milliseconds: 250),
@@ -166,7 +168,7 @@ class _AxonComboBoxState<T extends dynamic> extends State<AxonComboBox<T>> {
                   turns: focusNode.hasFocus ? -1.5 : 0,
                   child: Icon(
                     Icons.keyboard_arrow_down_rounded,
-                    size: 16,
+                    size: AxonTheme.of(context).iconSize,
                     color: Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
                   ),
                 ),
@@ -219,7 +221,7 @@ class _AxonComboBoxState<T extends dynamic> extends State<AxonComboBox<T>> {
       entry = null;
     }
 
-    const double itemHeight = 34;
+    late final double itemHeight = AxonTheme.of(context).isMobile ? 40 : 34;
     const double itemPadding = 4;
     const double offset = 5;
 
@@ -262,6 +264,7 @@ class _AxonComboBoxState<T extends dynamic> extends State<AxonComboBox<T>> {
                           padding: const EdgeInsets.all(4.0),
                           child: ListView.builder(
                             shrinkWrap: true,
+                            padding: EdgeInsets.zero,
                             itemCount: widget.items.length,
                             itemBuilder: (context, index) {
                               final item = widget.items[index];

@@ -76,7 +76,7 @@ class _AxonButtonBaseState extends State<AxonButtonBase> {
   bool _pressed = false;
   bool _hovered = false;
   //bool _focused = false;
-  late final focusNode;
+  late final FocusNode focusNode;
 
   @override
   void initState() {

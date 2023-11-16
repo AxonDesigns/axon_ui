@@ -30,15 +30,23 @@ class _AxonCheckboxState extends State<AxonCheckbox> {
 
     final double sideOffset = widget.checked
         ? _pressed
-            ? 5
+            ? AxonTheme.of(context).isMobile
+                ? 7
+                : 5
             : _hovered
                 ? 4.5
-                : 4
+                : AxonTheme.of(context).isMobile
+                    ? 6
+                    : 4
         : _pressed
-            ? 2
+            ? AxonTheme.of(context).isMobile
+                ? 3
+                : 2
             : _hovered
                 ? 1.5
-                : 1;
+                : AxonTheme.of(context).isMobile
+                    ? 2
+                    : 1;
 
     return FocusableActionDetector(
       focusNode: focusNode,
@@ -54,8 +62,8 @@ class _AxonCheckboxState extends State<AxonCheckbox> {
             AnimatedContainer(
                 duration: _pressed ? AxonTheme.of(context).pressedDuration : duration,
                 curve: curve,
-                width: 20,
-                height: 20,
+                width: AxonTheme.of(context).isMobile ? 30 : 20,
+                height: AxonTheme.of(context).isMobile ? 30 : 20,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AxonTheme.of(context).borderRadius + (sideOffset - 1)),
                   border: Border.all(

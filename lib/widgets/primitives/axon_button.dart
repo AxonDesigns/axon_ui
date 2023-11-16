@@ -79,11 +79,12 @@ class AxonButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final disabled = onPressed == null;
+
     return AxonButtonBase(
       onPressed: onPressed,
       disabled: disabled,
       focusNode: focusNode,
-      padding: padding,
+      padding: AxonTheme.of(context).isMobile ? EdgeInsets.symmetric(horizontal: padding.horizontal, vertical: padding.vertical) : padding,
       disabledBackgroundColor: _backgroundColor(_AxonButtonState.disabled, context),
       inactiveBackgroundColor: _backgroundColor(_AxonButtonState.inactive, context),
       hoveredBackgroundColor: _backgroundColor(_AxonButtonState.hovered, context),

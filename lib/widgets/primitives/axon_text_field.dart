@@ -106,7 +106,7 @@ class _AxonTextFieldState extends State<AxonTextField> {
               onExit: (event) => setState(() => _hovered = false),
               child: Row(
                 children: [
-                  if (widget.prefixBuilder != null) SizedBox(width: widget.prefixPadding),
+                  if (widget.prefixBuilder != null) SizedBox(width: AxonTheme.of(context).isMobile ? widget.prefixPadding * 2 : widget.prefixPadding),
                   if (widget.prefixBuilder != null)
                     Listener(
                         onPointerUp: (event) => _focusNode.requestFocus(),
@@ -130,18 +130,21 @@ class _AxonTextFieldState extends State<AxonTextField> {
                         if (widget.unFocusOnTapOutside && _focusNode.hasFocus) FocusScope.of(context).requestFocus(FocusNode());
                       },
                       style: widget.style ??
-                          const TextStyle(
-                            fontSize: 14,
+                          TextStyle(
+                            fontSize: AxonTheme.of(context).fontSize,
                           ),
                       decoration: InputDecoration(
                         hintText: widget.hintText,
                         hintStyle: widget.hintStyle ??
-                            const TextStyle(
-                              fontSize: 14,
+                            TextStyle(
+                              fontSize: AxonTheme.of(context).fontSize,
                               fontWeight: FontWeight.normal,
                             ),
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.symmetric(vertical: 4 + widget.padding.vertical, horizontal: widget.padding.horizontal),
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 4 + widget.padding.vertical,
+                          horizontal: AxonTheme.of(context).isMobile ? widget.padding.horizontal * 2 : widget.padding.horizontal,
+                        ),
                         isCollapsed: true,
                       ),
                     ),
@@ -160,7 +163,7 @@ class _AxonTextFieldState extends State<AxonTextField> {
                     _focusNode.requestFocus();
                   },
                   child: Padding(
-                    padding: EdgeInsets.only(right: widget.suffixPadding),
+                    padding: EdgeInsets.only(right: AxonTheme.of(context).isMobile ? widget.suffixPadding : widget.suffixPadding / 2),
                     child: widget.suffixBuilder!.call(_controller, _hovered, _focusNode.hasFocus),
                   ),
                 ),
